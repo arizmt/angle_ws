@@ -1,0 +1,17 @@
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target darknet_ros_msgs_generate_messages_py
+[  0%] Built target darknet_ros_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target darknet_ros_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[  0%] Built target darknet_ros_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target darknet_ros_msgs_generate_messages_lisp
+[  0%] Built target _darksocket_ros_generate_messages_check_deps_Detections
+[ 14%] Built target darksocket_ros_generate_messages_nodejs
+[ 42%] Built target darksocket_ros_generate_messages_py
+[ 71%] Built target darksocket_ros_generate_messages_eus
+[ 85%] Built target darksocket_ros_generate_messages_lisp
+[100%] Built target darksocket_ros_generate_messages_cpp
+[100%] Built target darksocket_ros_generate_messages

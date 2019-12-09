@@ -1,0 +1,11 @@
+[31m[1mCMake Error[0m at /home/users/fri/Desktop/angle_ws/src/view_nav_angle/CMakeLists.txt:163 (add_executable):
+  Cannot find source file:
+
+    src/obj_track.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .m .M .mm .h .hh .h++ .hm .hpp
+  .hxx .in .txx
+
+
+CMake Error: CMake can not determine linker language for target: obj_track
+CMake Error: Cannot determine link language for target "obj_track".

@@ -1,0 +1,76 @@
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kvoid pixelTo3DPoint(sensor_msgs::PointCloud, int, int, geometry_msgs::TransformStamped*)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:93:22:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst PointCloud {aka const struct sensor_msgs::PointCloud_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Kwidth[m[K’
+   int width = pCloud.width;
+[01;32m[K                      ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:94:23:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst PointCloud {aka const struct sensor_msgs::PointCloud_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Kheight[m[K’
+   int height = pCloud.height;
+[01;32m[K                       ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:97:32:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst PointCloud {aka const struct sensor_msgs::PointCloud_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Krow_step[m[K’
+   int arrayPosition = v*pCloud.row_step + u*pCloud.point_step;
+[01;32m[K                                ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:97:52:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst PointCloud {aka const struct sensor_msgs::PointCloud_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Kpoint_step[m[K’
+   int arrayPosition = v*pCloud.row_step + u*pCloud.point_step;
+[01;32m[K                                                    ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:100:42:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst PointCloud {aka const struct sensor_msgs::PointCloud_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Kfields[m[K’
+   int arrayPosX = arrayPosition + pCloud.fields[0].offset; // X has an offset of 0
+[01;32m[K                                          ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:101:42:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst PointCloud {aka const struct sensor_msgs::PointCloud_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Kfields[m[K’
+   int arrayPosY = arrayPosition + pCloud.fields[1].offset; // Y has an offset of 4
+[01;32m[K                                          ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:102:42:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst PointCloud {aka const struct sensor_msgs::PointCloud_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Kfields[m[K’
+   int arrayPosZ = arrayPosition + pCloud.fields[2].offset; // Z has an offset of 8
+[01;32m[K                                          ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:110:22:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst PointCloud {aka const struct sensor_msgs::PointCloud_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Kdata[m[K’
+   uint test = pCloud.data[0];
+[01;32m[K                      ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:112:22:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst PointCloud {aka const struct sensor_msgs::PointCloud_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Kdata[m[K’
+   memcpy(&Y, &pCloud.data[arrayPosX], sizeof(float));
+[01;32m[K                      ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:113:22:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst PointCloud {aka const struct sensor_msgs::PointCloud_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Kdata[m[K’
+   memcpy(&Z, &pCloud.data[arrayPosY], sizeof(float));
+[01;32m[K                      ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:114:22:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst PointCloud {aka const struct sensor_msgs::PointCloud_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Kdata[m[K’
+   memcpy(&X, &pCloud.data[arrayPosZ], sizeof(float));
+[01;32m[K                      ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K At global scope:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:195:27:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[K[[m[K’ token
+ geometry_msgs::PoseStamped[] circle(geometry_msgs::PoseStamped obj, double dist) {
+[01;32m[K                           ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kvoid moveCircle(geometry_msgs::PoseStamped, std::__cxx11::string)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:225:53:[m[K [01;31m[Kerror: [m[K‘[01m[Kcircle[m[K’ was not declared in this scope
+  geometry_msgs::PoseStamped inner[] = circle(obj, .5);
+[01;32m[K                                                     ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kvoid darkcb(const ConstPtr&)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:245:49:[m[K [01;31m[Kerror: [m[Kconversion from ‘[01m[K__gnu_cxx::__alloc_traits<std::allocator<std::pair<geometry_msgs::PoseStamped_<std::allocator<void> >, std::vector<std::pair<darknet_ros_msgs::BoundingBox_<std::allocator<void> >, std::__cxx11::basic_string<char> > > > > >::value_type {aka std::pair<geometry_msgs::PoseStamped_<std::allocator<void> >, std::vector<std::pair<darknet_ros_msgs::BoundingBox_<std::allocator<void> >, std::__cxx11::basic_string<char> > > >}[m[K’ to non-scalar type ‘[01m[Kdarknet_ros_msgs::BoundingBox {aka darknet_ros_msgs::BoundingBox_<std::allocator<void> >}[m[K’ requested
+   darknet_ros_msgs::BoundingBox box = obj_list[0];
+[01;32m[K                                                 ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kvoid getPoint(const ConstPtr&)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:376:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kbuf_index[m[K’ was not declared in this scope
+     if (buf_index >= 200 || buf_index < 0) {
+[01;32m[K         ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:379:15:[m[K [01;31m[Kerror: [m[K‘[01m[Kbuf_index[m[K’ was not declared in this scope
+     pc_buffer[buf_index] = *msg;
+[01;32m[K               ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:438:64:[m[K [01;31m[Kerror: [m[K‘[01m[Kcirc[m[K’ was not declared in this scope
+   vector<geometry_msgs::PoseStamped> demonav = circ(lounge, 2.0);
+[01;32m[K                                                                ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:444:53:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KRobotMotion::move_to_location(__gnu_cxx::__alloc_traits<std::allocator<geometry_msgs::PoseStamped_<std::allocator<void> > > >::value_type&)[m[K’
+   rm->move_to_location(location_list[location_index]);
+[01;32m[K                                                     ^[m[K
+In file included from [01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:6:0[m[K:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/include/bwi_obj_rec/robot_motion.h:64:8:[m[K [01;36m[Knote: [m[Kcandidate: void RobotMotion::move_to_location(std::pair<float, float>)
+   void move_to_location(std::pair<float, float> coordinates);
+[01;32m[K        ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/include/bwi_obj_rec/robot_motion.h:64:8:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[K__gnu_cxx::__alloc_traits<std::allocator<geometry_msgs::PoseStamped_<std::allocator<void> > > >::value_type {aka geometry_msgs::PoseStamped_<std::allocator<void> >}[m[K’ to ‘[01m[Kstd::pair<float, float>[m[K’
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:453:50:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KRobotMotion::move_to_location(__gnu_cxx::__alloc_traits<std::allocator<geometry_msgs::PoseStamped_<std::allocator<void> > > >::value_type&)[m[K’
+      rm->move_to_location(demonav[location_index]);
+[01;32m[K                                                  ^[m[K
+In file included from [01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:6:0[m[K:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/include/bwi_obj_rec/robot_motion.h:64:8:[m[K [01;36m[Knote: [m[Kcandidate: void RobotMotion::move_to_location(std::pair<float, float>)
+   void move_to_location(std::pair<float, float> coordinates);
+[01;32m[K        ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/include/bwi_obj_rec/robot_motion.h:64:8:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[K__gnu_cxx::__alloc_traits<std::allocator<geometry_msgs::PoseStamped_<std::allocator<void> > > >::value_type {aka geometry_msgs::PoseStamped_<std::allocator<void> >}[m[K’ to ‘[01m[Kstd::pair<float, float>[m[K’
+make[2]: *** [CMakeFiles/obj_search.dir/src/obj_search.cpp.o] Error 1
+make[1]: *** [CMakeFiles/obj_search.dir/all] Error 2
+make: *** [all] Error 2

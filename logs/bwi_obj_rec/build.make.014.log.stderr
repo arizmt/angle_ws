@@ -1,0 +1,12 @@
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:446:53:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KRobotMotion::move_to_location(__gnu_cxx::__alloc_traits<std::allocator<geometry_msgs::PoseStamped_<std::allocator<void> > > >::value_type&)[m[K’
+   rm->move_to_location(location_list[location_index]);
+[01;32m[K                                                     ^[m[K
+In file included from [01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:6:0[m[K:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/include/bwi_obj_rec/robot_motion.h:64:8:[m[K [01;36m[Knote: [m[Kcandidate: void RobotMotion::move_to_location(std::pair<float, float>)
+   void move_to_location(std::pair<float, float> coordinates);
+[01;32m[K        ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/include/bwi_obj_rec/robot_motion.h:64:8:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[K__gnu_cxx::__alloc_traits<std::allocator<geometry_msgs::PoseStamped_<std::allocator<void> > > >::value_type {aka geometry_msgs::PoseStamped_<std::allocator<void> >}[m[K’ to ‘[01m[Kstd::pair<float, float>[m[K’
+make[2]: *** [CMakeFiles/obj_search.dir/src/obj_search.cpp.o] Error 1
+make[1]: *** [CMakeFiles/obj_search.dir/all] Error 2
+make: *** [all] Error 2

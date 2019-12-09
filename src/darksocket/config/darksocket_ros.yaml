@@ -1,0 +1,6 @@
+darksocket_ros:
+  topics:
+    camera: /camera/rgb/image_color
+    detections: /darksocket_ros/detections
+  conf_path: /home/angle_ws/src/darksocket/scripts/darksocket.conf
+  telemetry: false

@@ -1,0 +1,1 @@
+set(ORDERED_PATHS "/home/users/fri/Desktop/angle_ws/devel/.private/darknet_ros/lib;/opt/ros/kinetic/lib")

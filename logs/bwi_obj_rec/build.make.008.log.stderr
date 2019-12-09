@@ -1,0 +1,47 @@
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kvoid moveCircle(geometry_msgs::PoseStamped, std::__cxx11::string)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:226:53:[m[K [01;31m[Kerror: [m[Kinitializer fails to determine size of ‘[01m[Kinner[m[K’
+  geometry_msgs::PoseStamped inner[] = circle(obj, .5);
+[01;32m[K                                                     ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:226:45:[m[K [01;31m[Kerror: [m[Kconversion from ‘[01m[Kgeometry_msgs::PoseStamped* {aka geometry_msgs::PoseStamped_<std::allocator<void> >*}[m[K’ to non-scalar type ‘[01m[Kgeometry_msgs::PoseStamped {aka geometry_msgs::PoseStamped_<std::allocator<void> >}[m[K’ requested
+  geometry_msgs::PoseStamped inner[] = circle(obj, .5);
+[01;32m[K                                             ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:227:52:[m[K [01;31m[Kerror: [m[Kinitializer fails to determine size of ‘[01m[Kouter[m[K’
+  geometry_msgs::PoseStamped outer[] = circle(obj, 2);
+[01;32m[K                                                    ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:227:45:[m[K [01;31m[Kerror: [m[Kconversion from ‘[01m[Kgeometry_msgs::PoseStamped* {aka geometry_msgs::PoseStamped_<std::allocator<void> >*}[m[K’ to non-scalar type ‘[01m[Kgeometry_msgs::PoseStamped {aka geometry_msgs::PoseStamped_<std::allocator<void> >}[m[K’ requested
+  geometry_msgs::PoseStamped outer[] = circle(obj, 2);
+[01;32m[K                                             ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kvoid darkcb(const ConstPtr&)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:246:49:[m[K [01;31m[Kerror: [m[Kconversion from ‘[01m[K__gnu_cxx::__alloc_traits<std::allocator<std::pair<geometry_msgs::PoseStamped_<std::allocator<void> >, std::vector<std::pair<darknet_ros_msgs::BoundingBox_<std::allocator<void> >, std::__cxx11::basic_string<char> > > > > >::value_type {aka std::pair<geometry_msgs::PoseStamped_<std::allocator<void> >, std::vector<std::pair<darknet_ros_msgs::BoundingBox_<std::allocator<void> >, std::__cxx11::basic_string<char> > > >}[m[K’ to non-scalar type ‘[01m[Kdarknet_ros_msgs::BoundingBox {aka darknet_ros_msgs::BoundingBox_<std::allocator<void> >}[m[K’ requested
+   darknet_ros_msgs::BoundingBox box = obj_list[0];
+[01;32m[K                                                 ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kvoid getPoint(const ConstPtr&)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:377:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kbuf_index[m[K’ was not declared in this scope
+     if (buf_index >= 200 || buf_index < 0) {
+[01;32m[K         ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:380:15:[m[K [01;31m[Kerror: [m[K‘[01m[Kbuf_index[m[K’ was not declared in this scope
+     pc_buffer[buf_index] = *msg;
+[01;32m[K               ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:439:64:[m[K [01;31m[Kerror: [m[K‘[01m[Kcirc[m[K’ was not declared in this scope
+   vector<geometry_msgs::PoseStamped> demonav = circ(lounge, 2.0);
+[01;32m[K                                                                ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:445:53:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KRobotMotion::move_to_location(__gnu_cxx::__alloc_traits<std::allocator<geometry_msgs::PoseStamped_<std::allocator<void> > > >::value_type&)[m[K’
+   rm->move_to_location(location_list[location_index]);
+[01;32m[K                                                     ^[m[K
+In file included from [01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:6:0[m[K:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/include/bwi_obj_rec/robot_motion.h:64:8:[m[K [01;36m[Knote: [m[Kcandidate: void RobotMotion::move_to_location(std::pair<float, float>)
+   void move_to_location(std::pair<float, float> coordinates);
+[01;32m[K        ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/include/bwi_obj_rec/robot_motion.h:64:8:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[K__gnu_cxx::__alloc_traits<std::allocator<geometry_msgs::PoseStamped_<std::allocator<void> > > >::value_type {aka geometry_msgs::PoseStamped_<std::allocator<void> >}[m[K’ to ‘[01m[Kstd::pair<float, float>[m[K’
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:454:50:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KRobotMotion::move_to_location(__gnu_cxx::__alloc_traits<std::allocator<geometry_msgs::PoseStamped_<std::allocator<void> > > >::value_type&)[m[K’
+      rm->move_to_location(demonav[location_index]);
+[01;32m[K                                                  ^[m[K
+In file included from [01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:6:0[m[K:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/include/bwi_obj_rec/robot_motion.h:64:8:[m[K [01;36m[Knote: [m[Kcandidate: void RobotMotion::move_to_location(std::pair<float, float>)
+   void move_to_location(std::pair<float, float> coordinates);
+[01;32m[K        ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/include/bwi_obj_rec/robot_motion.h:64:8:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[K__gnu_cxx::__alloc_traits<std::allocator<geometry_msgs::PoseStamped_<std::allocator<void> > > >::value_type {aka geometry_msgs::PoseStamped_<std::allocator<void> >}[m[K’ to ‘[01m[Kstd::pair<float, float>[m[K’
+make[2]: *** [CMakeFiles/obj_search.dir/src/obj_search.cpp.o] Error 1
+make[1]: *** [CMakeFiles/obj_search.dir/all] Error 2
+make: *** [all] Error 2

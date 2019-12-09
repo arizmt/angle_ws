@@ -1,0 +1,88 @@
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:20:13:[m[K [01;31m[Kerror: [m[K‘[01m[KPointCloud2[m[K’ is not a member of ‘[01m[Ksensor_msgs[m[K’
+ std::vector<sensor_msgs::PointCloud2> pc_buffer(200);
+[01;32m[K             ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:20:13:[m[K [01;31m[Kerror: [m[K‘[01m[KPointCloud2[m[K’ is not a member of ‘[01m[Ksensor_msgs[m[K’
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:20:37:[m[K [01;31m[Kerror: [m[Ktemplate argument 1 is invalid
+ std::vector<sensor_msgs::PointCloud2> pc_buffer(200);
+[01;32m[K                                     ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:20:37:[m[K [01;31m[Kerror: [m[Ktemplate argument 2 is invalid
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:77:14:[m[K [01;31m[Kerror: [m[K‘[01m[KPointCloud2[m[K’ in namespace ‘[01m[Ksensor_msgs[m[K’ does not name a type
+ sensor_msgs::PointCloud2 findPoint(ros::Time time) {
+[01;32m[K              ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:89:40:[m[K [01;31m[Kerror: [m[K‘[01m[KPointCloud2[m[K’ in namespace ‘[01m[Ksensor_msgs[m[K’ does not name a type
+ void pixelTo3DPoint(const sensor_msgs::PointCloud2 pCloud, const int u, const int v, geometry_msgs::TransformStamped* p)
+[01;32m[K                                        ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kvoid pixelTo3DPoint(int, int, int, geometry_msgs::TransformStamped*)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:93:22:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kwidth[m[K’ in ‘[01m[KpCloud[m[K’, which is of non-class type ‘[01m[Kconst int[m[K’
+   int width = pCloud.width;
+[01;32m[K                      ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:94:23:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kheight[m[K’ in ‘[01m[KpCloud[m[K’, which is of non-class type ‘[01m[Kconst int[m[K’
+   int height = pCloud.height;
+[01;32m[K                       ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:97:32:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Krow_step[m[K’ in ‘[01m[KpCloud[m[K’, which is of non-class type ‘[01m[Kconst int[m[K’
+   int arrayPosition = v*pCloud.row_step + u*pCloud.point_step;
+[01;32m[K                                ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:97:52:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kpoint_step[m[K’ in ‘[01m[KpCloud[m[K’, which is of non-class type ‘[01m[Kconst int[m[K’
+   int arrayPosition = v*pCloud.row_step + u*pCloud.point_step;
+[01;32m[K                                                    ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:100:42:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kfields[m[K’ in ‘[01m[KpCloud[m[K’, which is of non-class type ‘[01m[Kconst int[m[K’
+   int arrayPosX = arrayPosition + pCloud.fields[0].offset; // X has an offset of 0
+[01;32m[K                                          ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:101:42:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kfields[m[K’ in ‘[01m[KpCloud[m[K’, which is of non-class type ‘[01m[Kconst int[m[K’
+   int arrayPosY = arrayPosition + pCloud.fields[1].offset; // Y has an offset of 4
+[01;32m[K                                          ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:102:42:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kfields[m[K’ in ‘[01m[KpCloud[m[K’, which is of non-class type ‘[01m[Kconst int[m[K’
+   int arrayPosZ = arrayPosition + pCloud.fields[2].offset; // Z has an offset of 8
+[01;32m[K                                          ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:110:22:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kdata[m[K’ in ‘[01m[KpCloud[m[K’, which is of non-class type ‘[01m[Kconst int[m[K’
+   uint test = pCloud.data[0];
+[01;32m[K                      ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:112:22:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kdata[m[K’ in ‘[01m[KpCloud[m[K’, which is of non-class type ‘[01m[Kconst int[m[K’
+   memcpy(&Y, &pCloud.data[arrayPosX], sizeof(float));
+[01;32m[K                      ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:113:22:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kdata[m[K’ in ‘[01m[KpCloud[m[K’, which is of non-class type ‘[01m[Kconst int[m[K’
+   memcpy(&Z, &pCloud.data[arrayPosY], sizeof(float));
+[01;32m[K                      ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:114:22:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kdata[m[K’ in ‘[01m[KpCloud[m[K’, which is of non-class type ‘[01m[Kconst int[m[K’
+   memcpy(&X, &pCloud.data[arrayPosZ], sizeof(float));
+[01;32m[K                      ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:128:22:[m[K [01;31m[Kerror: [m[Krequest for member ‘[01m[Kheader[m[K’ in ‘[01m[KpCloud[m[K’, which is of non-class type ‘[01m[Kconst int[m[K’
+   p->header = pCloud.header;
+[01;32m[K                      ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K At global scope:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:133:108:[m[K [01;31m[Kerror: [m[K‘[01m[Ksensor_msgs::PointCloud2[m[K’ has not been declared
+ void getMiddle(geometry_msgs::TransformStamped* transform, darknet_ros_msgs::BoundingBox box, sensor_msgs::PointCloud2 pcloud) {
+[01;32m[K                                                                                                            ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:195:27:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[K[[m[K’ token
+ geometry_msgs::PoseStamped[] circle(geometry_msgs::PoseStamped obj, double dist) {
+[01;32m[K                           ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kvoid moveCircle(geometry_msgs::PoseStamped, std::__cxx11::string)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:225:53:[m[K [01;31m[Kerror: [m[K‘[01m[Kcircle[m[K’ was not declared in this scope
+  geometry_msgs::PoseStamped inner[] = circle(obj, .5);
+[01;32m[K                                                     ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K In function ‘[01m[Kvoid darkcb(const ConstPtr&)[m[K’:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:244:3:[m[K [01;31m[Kerror: [m[K‘[01m[KPointCloud2[m[K’ is not a member of ‘[01m[Ksensor_msgs[m[K’
+   sensor_msgs::PointCloud2 currpc = findPoint(msg->header.stamp);
+[01;32m[K   ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:245:49:[m[K [01;31m[Kerror: [m[Kconversion from ‘[01m[K__gnu_cxx::__alloc_traits<std::allocator<std::pair<geometry_msgs::PoseStamped_<std::allocator<void> >, std::vector<std::pair<darknet_ros_msgs::BoundingBox_<std::allocator<void> >, std::__cxx11::basic_string<char> > > > > >::value_type {aka std::pair<geometry_msgs::PoseStamped_<std::allocator<void> >, std::vector<std::pair<darknet_ros_msgs::BoundingBox_<std::allocator<void> >, std::__cxx11::basic_string<char> > > >}[m[K’ to non-scalar type ‘[01m[Kdarknet_ros_msgs::BoundingBox {aka darknet_ros_msgs::BoundingBox_<std::allocator<void> >}[m[K’ requested
+   darknet_ros_msgs::BoundingBox box = obj_list[0];
+[01;32m[K                                                 ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:247:30:[m[K [01;31m[Kerror: [m[K‘[01m[Kcurrpc[m[K’ was not declared in this scope
+   getMiddle(&transform, box, currpc);
+[01;32m[K                              ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:[m[K At global scope:
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:373:34:[m[K [01;31m[Kerror: [m[K‘[01m[KPointCloud2[m[K’ in namespace ‘[01m[Ksensor_msgs[m[K’ does not name a type
+ void getPoint(const sensor_msgs::PointCloud2::ConstPtr& msg) {
+[01;32m[K                                  ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:373:55:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[K&[m[K’ token
+ void getPoint(const sensor_msgs::PointCloud2::ConstPtr& msg) {
+[01;32m[K                                                       ^[m[K
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:373:55:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K&[m[K’ token
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:373:57:[m[K [01;31m[Kerror: [m[Kexpected initializer before ‘[01m[Kmsg[m[K’
+ void getPoint(const sensor_msgs::PointCloud2::ConstPtr& msg) {
+[01;32m[K                                                         ^[m[K
+make[2]: *** [CMakeFiles/obj_search.dir/src/obj_search.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [CMakeFiles/obj_search.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [all] Error 2

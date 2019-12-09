@@ -1,0 +1,7 @@
+[01m[K/home/users/fri/Desktop/angle_ws/src/view_nav_angle/src/obj_search.cpp:17:36:[m[K [01;31m[Kfatal error: [m[Ksensor_msgs::PointCloud2: No such file or directory
+ #include <sensor_msgs::PointCloud2>
+[01;32m[K                                    ^[m[K
+compilation terminated.
+make[2]: *** [CMakeFiles/obj_search.dir/src/obj_search.cpp.o] Error 1
+make[1]: *** [CMakeFiles/obj_search.dir/all] Error 2
+make: *** [all] Error 2

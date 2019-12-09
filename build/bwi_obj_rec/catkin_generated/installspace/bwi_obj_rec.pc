@@ -1,0 +1,8 @@
+prefix=/home/users/fri/Desktop/angle_ws/install
+
+Name: bwi_obj_rec
+Description: Description of bwi_obj_rec
+Version: 0.0.0
+Cflags: -I/home/users/fri/Desktop/angle_ws/install/include
+Libs: -L/home/users/fri/Desktop/angle_ws/install/lib 
+Requires: roscpp std_msgs sensor_msgs

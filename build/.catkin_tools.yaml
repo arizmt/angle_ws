@@ -1,0 +1,6 @@
+devel_space: /home/users/fri/Desktop/angle_ws/devel
+install: false
+install_space: /home/users/fri/Desktop/angle_ws/install
+profile: default
+source_space: /home/users/fri/Desktop/angle_ws/src
+workspace: /home/users/fri/Desktop/angle_ws
