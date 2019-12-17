@@ -152,6 +152,13 @@ install(DIRECTORY include/${PROJECT_NAME}/
 #target_link_libraries(bwi_obj_rec_robot_motion ${catkin_LIBRARIES})
 #target_link_libraries(robot_motion find_objects ${catkin_LIBRARIES})
 
+add_executable(bwi_obj_rec_find_objects src/find_objects.cpp src/robot_motion.cpp)
+#add_dependencies(bwi_obj_rec_find_objects robot_motion)
+target_link_libraries(bwi_obj_rec_find_objects ${catkin_LIBRARIES})
+
+add_executable(obj_rec src/obj_rec.cpp)
+add_dependencies(obj_rec ${catkin_EXPORTED_TARGETS})
+target_link_libraries(obj_rec ${catkin_LIBRARIES})
 
 #add_executable(obj_track src/obj_track.cpp)
 #add_dependencies(obj_track ${catkin_EXPORTED_TARGETS})

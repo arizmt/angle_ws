@@ -15,10 +15,12 @@
 #include <tf/transform_datatypes.h>
 #include <math.h>
 #include <sensor_msgs/PointCloud2.h>
+#include <tf/transform_broadcaster.h>
 
 //	typedef actionlib::SimpleActionClient<plan_execution::ExecutePlanAction> Client;
 
 std::vector<sensor_msgs::PointCloud2> pc_buffer(200);
+sensor_msgs::PointCloud2 npc;
 int buf_index;
 using namespace std;
 RobotMotion *rm;
@@ -83,12 +85,13 @@ sensor_msgs::PointCloud2 findPoint(ros::Time time) {
     if (abs((pc_buffer[i].header.stamp - time).toSec()) < diff.toSec()) {
       ret = pc_buffer[i];
       diff = ros::Duration(abs((pc_buffer[i].header.stamp - time).toSec()));
+      //ROS_INFO("pc in buffer at %d", i);
     }
   }
   return ret;
 }
 
-void pixelTo3DPoint(const sensor_msgs::PointCloud2 pCloud, const int u, const int v, geometry_msgs::TransformStamped* p)
+void pixelTo3DPoint(const sensor_msgs::PointCloud2 pCloud, const int t, const int y, geometry_msgs::TransformStamped* p)
 {
 	//ROS_INFO("get pixel");
   // get width and height of 2D point cloud data
@@ -96,8 +99,8 @@ void pixelTo3DPoint(const sensor_msgs::PointCloud2 pCloud, const int u, const in
   int height = pCloud.height;
   // Convert from u (column / width), v (row/height) to position in array
   // where X,Y,Z data starts
-  int arrayPosition = v*pCloud.row_step + u*pCloud.point_step;
-  //ROS_INFO("0");
+  int arrayPosition = y*pCloud.row_step + t*pCloud.point_step;
+  ROS_INFO("width %d, height %d", t, y);
   // compute position in array where x,y,z data start
   int arrayPosX = arrayPosition + pCloud.fields[0].offset; // X has an offset of 0
   int arrayPosY = arrayPosition + pCloud.fields[1].offset; // Y has an offset of 4
@@ -105,7 +108,7 @@ void pixelTo3DPoint(const sensor_msgs::PointCloud2 pCloud, const int u, const in
   // int arrayPosX = arrayPosition; // X has an offset of 0
   // int arrayPosY = arrayPosition + 4; // Y has an offset of 4
   // int arrayPosZ = arrayPosition + 8; // Z has an offset of 8
-  //ROS_INFO("1");
+  ROS_INFO("1");
   float X = 0.0;
   float Y = 0.0;
   float Z = 0.0;
@@ -129,7 +132,41 @@ void pixelTo3DPoint(const sensor_msgs::PointCloud2 pCloud, const int u, const in
 
   p->header = pCloud.header;
   p->child_frame_id = "obj";
-  //ROS_INFO("got pixel");
+  ROS_INFO("got pixel, x: %f, y: %f, z: %f", X, -Y, -Z);
+  ROS_INFO("pcl frame: %s", pCloud.header.frame_id.c_str());
+  tf::Transform transform;
+  transform.setOrigin( tf::Vector3(-Z, 0, X) );
+  transform.setRotation( tf::Quaternion(0, 0, 0, 1) );
+  static tf::TransformBroadcaster br;
+  br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "nav_kinect_rgb_optical_frame", "targobj"));
+  ROS_INFO("sent transform");
+ 
+ 
+ /*
+ for (int u = 0; u  <pCloud.width; u++) {
+			for (int v = 0; v  <pCloud.height; v++) {
+			int sarrayPosition = v*pCloud.row_step + u*pCloud.point_step;
+			//ROS_INFO("width %d, height %d", u, v);
+			// compute position in array where x,y,z data start
+			int sarrayPosX = sarrayPosition + pCloud.fields[0].offset; // X has an offset of 0
+			int sarrayPosY = sarrayPosition + pCloud.fields[1].offset; // Y has an offset of 4
+			int sarrayPosZ = sarrayPosition + pCloud.fields[2].offset; // Z has an offset of 8
+			  float sX = 0.0;
+				float sY = 0.0;
+				float sZ = 0.0;
+				memcpy(&sY, &pCloud.data[sarrayPosX], sizeof(float));
+				memcpy(&sZ, &pCloud.data[sarrayPosY], sizeof(float));
+				memcpy(&sX, &pCloud.data[sarrayPosZ], sizeof(float));
+			ROS_INFO("got pixel, x: %f, y: %f, z: %f", sX, sY, sZ);
+			}
+			}
+	*/
+
+  /*
+  for (int i = 0; i < (pCloud.row_step*pCloud.height); i++) {
+  	ROS_INFO("pointcloud data: %d", pCloud.data[i]);
+  }
+  */
 }
 
 void getMiddle(geometry_msgs::TransformStamped* transform, darknet_ros_msgs::BoundingBox box, sensor_msgs::PointCloud2 pcloud) {
@@ -196,7 +233,7 @@ void matchBox(vector<darknet_ros_msgs::BoundingBox> a, vector<pair<darknet_ros_m
 
 geometry_msgs::PoseStamped* circle(geometry_msgs::PoseStamped obj, double dist) {
 	static geometry_msgs::PoseStamped circ[8];
-
+	obj.pose.orientation.w = 1;
 	circ[0] = geometry_msgs::PoseStamped(obj);
 	circ[0].pose.position.x += dist;
 	circ[2] = geometry_msgs::PoseStamped(obj);
@@ -224,28 +261,39 @@ geometry_msgs::PoseStamped* circle(geometry_msgs::PoseStamped obj, double dist) 
 }
 
 void moveCircle(geometry_msgs::PoseStamped obj, string clas) {
-	geometry_msgs::PoseStamped* inner = circle(obj, .5);
-	geometry_msgs::PoseStamped* outer = circle(obj, 2);
+	geometry_msgs::PoseStamped* inner = circle(obj, .2);
+	geometry_msgs::PoseStamped* outer = circle(obj, .5);
+	ROS_INFO("obj x: %f, obj y: %f", obj.pose.position.x, obj.pose.position.y);
+	ROS_INFO("got circle points");
+	obj.pose.orientation.w = 1;
+	rm->move_to_pose(obj);
+	while (rm->action_status());
+	/*
 	for (int i = 0; i < 8; i++) {
+		ROS_INFO("targ x: %f, targ y: %f", outer[i].pose.position.x, outer[i].pose.position.y);
 		rm->move_to_pose(outer[i]);
 		while (rm->action_status());
 		rm->move_to_pose(inner[i]);
 		while (rm->action_status()) { ros::spinOnce(); }
 		rm->move_to_pose(outer[i]);
 		while (rm->action_status());
+		
 	}
+	
+	*/
 	drive = false;
 }
 
 void darkcb(const darknet_ros_msgs::BoundingBoxes::ConstPtr& msg){
 	if (!drive) {
 		// start driving around object
-		drive = true;
+		
 		vector<darknet_ros_msgs::BoundingBox> msg_list = msg->bounding_boxes;
 		ROS_INFO("starting circle");
 		sensor_msgs::PointCloud2 currpc = findPoint(msg->header.stamp);
+		ROS_INFO("got cloud");
 		darknet_ros_msgs::BoundingBox box = msg_list[0];
-        geometry_msgs::TransformStamped transform;
+    geometry_msgs::TransformStamped transform;
 		getMiddle(&transform, box, currpc);
 		//transform stores 3d pose estimate
 		geometry_msgs::PoseStamped center;
@@ -254,101 +302,13 @@ void darkcb(const darknet_ros_msgs::BoundingBoxes::ConstPtr& msg){
 		center.pose.position.z = transform.transform.translation.z;
 		targ = center;
 		targclass = box.Class;
-
+		ROS_INFO("target object: %s", msg->bounding_boxes[0].Class.c_str());
+		drive = true;
 
 	} else {
 		ROS_INFO("YAY");
 	}
 
-	// bool made = false;
-	// float distance = 10;
-	// geometry_msgs::PoseStamped ret;
-	// geometry_msgs::PoseStamped out_pose;
-
-	// if (msg_list.size() > 0) {
-	//     //go through objects
-	//     for (int i = 0; i < msg_list.size(); i++) {
-	      
-	//         //check if seen
-	//         int add = 0;
-	//         if (msg->header.stamp.toSec() - lasttime.toSec() < 4) {
-	//           for (int j = 0; j < lastcb.size(); j++) {
-	//             if (lastcb[j].Class.compare(msg_list[i].Class) == 0) {
-	//               int diff = compareBoxes(lastcb[j], msg_list[i]);
-	//               if (diff < 500)
-	//                 add = 1;
-	//             }
-	//           }
-	//         }
-	//       //add object, position of segbot
-	//       if (add != 1 && obj_list.size() <= 6) {
-	//       	if (!made) {
-		        
-	// 	        geometry_msgs::PoseStamped bot_pose;
-	// 	        bot_pose.header.seq = 0;
-	// 	        bot_pose.header.stamp = ros::Time(0);
-	// 	        bot_pose.header.frame_id = "base_link";
-	// 	        bot_pose.pose.position.x = 0;
-	// 	        bot_pose.pose.position.y = 0;
-	// 	        bot_pose.pose.orientation.w = 1;
-
-	// 	        try{
-	// 	          ros::Time now = msg->image_header.stamp;
-	// 	          tf_l->waitForTransform(gridFrameId, "base_link", now, ros::Duration(1.0));
-	// 	          tf_l->transformPose(gridFrameId, bot_pose, out_pose);
-	// 	        } catch (tf::TransformException ex){
-	// 	          ROS_ERROR("%s",ex.what());
-	// 	        }
-
-	// 	        out_pose.header.frame_id = msg_list[i].Class;
-	// 	    }
-
-	//         if (add == 0) {
-	//           if (!made) {
-	// 	          for (int p = 0; p < obj_list.size(); p++) {
-	// 	            float x = obj_list[p].first.pose.position.x - out_pose.pose.position.x;
-	// 	            float y = obj_list[p].first.pose.position.y - out_pose.pose.position.y;
-	// 	            float tempdist = sqrt(pow(x, 2) + pow(y, 2));
-	// 	            if (tempdist < distance) {
-	// 	              distance = tempdist;
-	// 	            }
-	// 	          }
-	// 	      }
-
-	//           if (distance > 3) {
-	//           	if (!made) {
-	// 	            ret = out_pose;
-	// 	            ret.header.frame_id = msg_list[i].Class;
-	// 	            pair<darknet_ros_msgs::BoundingBox, string> boxpair(msg_list[i], msg_list[i].Class + "0");
-	// 	            vector<pair<darknet_ros_msgs::BoundingBox, string>> list;
-	// 	            list.push_back(boxpair);
-	// 	            pair<geometry_msgs::PoseStamped, vector<pair<darknet_ros_msgs::BoundingBox, string>>> temp(ret, list);
-	//             	obj_list.push_back(temp);
-	//             } else {
-	//             	pair<darknet_ros_msgs::BoundingBox, string> boxpair(msg_list[i], msg_list[i].Class + to_string(obj_list[obj_list.size()-1].second.size()));
-	//             	obj_list[obj_list.size()-1].second.push_back(boxpair);
-	//             }
-	//             ROS_INFO("added %s", msg_list[i].Class.c_str());
-	//             //position when object was found (x and y)
-	//             //ROS_INFO("%f %f", out_pose.pose.position.x, out_pose.pose.position.y);
-	//             made = true;
-	//           } else {
-	//           		//ROS_INFO("too close");
-	//           }
-	//         } else {
-	//           ROS_INFO("update location");
-	//           obj_list[i].first = out_pose;
-	//         }
-	//       	//ROS_INFO("add: %d", add);
-	//       }
-	//     }
-
-	// }
-    // //clear and repopulate list of object from previous frame, update stamp
-    // lastcb.clear();
-    // for (int p = 0; p < msg_list.size(); p++) 
-    //   lastcb.push_back(msg_list[p]);
-    // lasttime = msg->image_header.stamp;
 }
 
 void getMapId(const nav_msgs::OccupancyGrid::ConstPtr &grid){
@@ -371,24 +331,34 @@ void getPose(pair<float, float> coord, geometry_msgs::PoseStamped pose) {
 
 
 //callback to store point clouds
-void getPoint(const sensor_msgs::PointCloud2::ConstPtr& msg) {
+void getPoint(const sensor_msgs::PointCloud2ConstPtr& msg) {
 	 //ROS_INFO("get point");
-    sensor_msgs::PointCloud2 cop = *msg;
+	 //ROS_INFO("wid: %d, hei: %d", msg->width, msg->height);
     if (buf_index >= 200 || buf_index < 0) {
       buf_index = 0;
     }
     pc_buffer[buf_index] = *msg;
     buf_index++;
     //ROS_INFO("got point");
+    npc = *msg;
+    
+    	sensor_msgs::PointCloud2 pCloud = *msg;
+      
 }
 
 
+
+
 int main(int argc, char**argv) {
-  ros::init(argc, argv, "move_to_location");
+	ros::init(argc, argv, "move_to_location");
   ros::NodeHandle moveNode;
+  ROS_INFO("SDF");
+	
+	ROS_INFO("FDS");
 
   ros::Subscriber mapSub = moveNode.subscribe("/level_mux/map", 1, getMapId);
   ros::Subscriber darknetSub = moveNode.subscribe("/darknet_ros/bounding_boxes", 1, darkcb);
+  ros::Subscriber pointSub = moveNode.subscribe("/nav_kinect/depth_registered/points", 1, getPoint);
   tf::TransformListener tfL(moveNode);
   tf_l = &tfL;
   drive = false;
@@ -423,7 +393,7 @@ int main(int argc, char**argv) {
 	d414a.pose.position.z = 0;
 	d414a.pose.orientation.w = 1;
 	location_list.push_back(lounge);
-  location_list.push_back(d414a);
+  //location_list.push_back(d414a);
   //location_list.push_back(kitchen);
   //location_list.push_back(d3_414a2);
   geometry_msgs::PoseStamped d414b;
@@ -443,7 +413,7 @@ int main(int argc, char**argv) {
   ROS_INFO("starting initial loop");
   ROS_INFO("Moving to location 0");
   rm->move_to_pose(location_list[location_index]);
-  location_index++;
+  //location_index++;
   while (ros::ok())
   {
 	  if (0 != rm && !rm->action_status())
@@ -452,12 +422,31 @@ int main(int argc, char**argv) {
 		  if (!drive) {
 			  ROS_INFO("Moving to location %d", location_index);
 			  rm->move_to_pose(location_list[location_index]);
-			  location_index++;
+			  //location_index++;
 				if (location_index >= location_list.size()) {
 					location_index = 0;
 				}
 		  } else {
-			  moveCircle(targ, targclass);
+		  	ROS_INFO("moving circle");
+		  	tf::StampedTransform targtf;
+		  	bool good = true;
+		  	try{
+				  tfL.lookupTransform("level_mux_map", "targobj",  
+				                           ros::Time(0), targtf);
+				}
+				catch (tf::TransformException ex){
+				  ROS_ERROR("%s",ex.what());
+				  good = false;
+				  drive = false;
+				  ros::Duration(1.0).sleep();
+				}
+				if (good) {
+					geometry_msgs::PoseStamped targp;
+					targp.pose.position.x = targtf.getOrigin().getX();
+					targp.pose.position.y = targtf.getOrigin().getY();
+					targp.pose.position.z = targtf.getOrigin().getZ();
+			  	moveCircle(targp, targclass);
+			  }
 		  }
 		
 
@@ -478,3 +467,4 @@ int main(int argc, char**argv) {
 
   return 0;
 }
+
